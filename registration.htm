@@ -2,51 +2,124 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      function isFormValid () {
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-       <!--  <a class="navbar-brand" href="logoKL.jpg">Logo of Kuala Lumpur </a>
-       <span class="sr-only">(current)</span> <a class="navbar-brand" href="home.htm"><img src="http://teresakok.com/wp-content/uploads/2016/05/KL.jpg" alt="Logo of Kuala Lumpur" width="100px" height="80px"></a> -->
+        var firstname = document.getElementById('firstname').value;
+        if( firstname== null || firstname=="" ) {
+         alert("firstname must be entered")
+         return false;
+        }else if(!isNameValid(firstname)){
+          alert("first name must contain only English alphabet letters")
+          return false;
+        }
+
+
+        var LastName = document.getElementById('lastname').value;
+        if(LastName== null || LastName=="") {
+         alert("last name must be entered")
+         return false;
+        }else if(!isNameValid(LastName)){
+          alert("last name must contain only English alphabet letters")
+          return false;
+        }
+
+        
+
+        var bDate = document.getElementById('bday').value;
+        if(bDate==null || bDate=="") {
+         alert("birth date must be entered")
+         return false;
+        }else if(!isDateValid(bDate)){
+          alert("birth date must be in correct usage")
+          return false;
+        }
+
+        var mail= document.getElementById('email').value;
+        if(mail==null || mail==""){
+          alert("email must be entered")
+          return false;  
+        }else if(!isEmailValid(mail)){
+          alert("email must be in correct format")
+          return false;
+        }
+
+        var p = document.getElementById('password').value;
+        if(p==null || p=="") {
+         alert("password must be entered")
+         return false;
+        }else if(!isPasswordValid(p)){
+          alert("password must be in correct format")
+          return false;
+        }
+  }
+
+
+      function isNameValid(word) {
+        var r=/^(?![\s.]+$)[a-zA-Z\s]*$/;
+        return r.test(word);
+      }
+      
+
+      function isPasswordValid(password) {
+        var r= /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{6,15}$/;
+        return r.test(password);
+      }
+
+      function isDateValid(bday){
+                if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(bday))
+                    return false;
+
+                var parts = bday.split("/");
+                var day = parseInt(parts[1], 10);
+                var month = parseInt(parts[0], 10);
+                var year = parseInt(parts[2], 10);
+
+                // Check the ranges of month and year
+                if(year < 1000 || year > 3000 || month == 0 || month > 12)
+                    return false;
+
+                var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+                if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                    monthLength[1] = 29;
+
+                // Check the range of the day
+                return day > 0 && day <= monthLength[month - 1];
+  }
+      
+      function isEmailValid(email) {
+        var r =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return r.test(String(email).toLowerCase());
+      }
+
+      function isInterestValid(interest) {
+        document.getElementById("interest").checked = true;
+
+      }
+
+  </script>
 
    <style>
       .navbar{
         margin-bottom: 2.7777%;
       }
 
-      .top-part {
-          padding-bottom: 3.7777%;
-      }
-      
-      .second-part{
-         margin-bottom: 2.7777%;
-      }
-
-      .figcaption{
-        text-align: center;
-      }
-
-      .row{
-        margin-bottom: 2.7777%;
-      }
-
-      .col-lg{
-        width: %100
-      }
-
-
     </style>
 
-    <title>Local Dishes</title>
+    <title>Registration</title>
+
+  
+
   </head>
   <body>
 
@@ -85,25 +158,26 @@
 
 
 
-        <form style="margin: 0 auto; width:250px;" action="successful.htm" method="get">
+        <form style="margin: 0 auto; width:250px;" action="calculator.html" method="post">
 
-          <label for="fname">First Name</label> </br>
-          <input required type="text" id="fname" name="firstname" placeholder="Please enter  name.."> </br></br>
+          <label for="firstname">First Name</label> </br>
+          <input  type="text" id="firstname" name="firstname" placeholder="Name"> </br></br>
 
-          <label for="lname">Last Name</label></br>
-          <input required type="text" id="lname" name="lastname" placeholder="Please enter last name.."></br></br>
+          <label for="lastname">Last Name</label></br>
+          <input  type="text" id="lastname" name="lastname" placeholder="Surname"></br></br>
 
           <label for="bday">Birthday</label> </br>
-        <input required type="date" name="bday"></br></br>
+        <input  type="text" id="bday" name="bday" placeholder="DD/MM/YYYY"></br></br>
         
-         <label for="bday">Email</label> </br>
-         <input required type="email" name="email"></br></br>
+         <label for="email">Email</label> </br>
+         <input  type="text" id="email" name="email" placeholder="example@example.com"></br></br>
          
-          <label for="bday">Password</label> </br>
-          <input required type="password" name="psw"></br></br>
+          <label for="password">Password </label></br>
+          <input type="password" id="password" name="password">  (Between 6 to 15 characters which  should   contain  at  least one 
+          uppercase letter, one numeric digit,  and one special character ) </br></br>
           
         <label for="gender"> Gender</label> </br>
-          <select required type= gender>
+          <select name="gender" type= gender>
             <option  value="Female">Female</option>
             <option  value="Male">Male</option>
             <option  value="Other">Other</option>
@@ -122,7 +196,7 @@
             <input type="checkbox" name="interest" value="Bike">Surfing<br>
             <input type="checkbox" name="interest" value="Bike">Photography<br><br>
         
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onClick="return isFormValid()">
             <input type="reset" value="Reset">
         </form>
 
